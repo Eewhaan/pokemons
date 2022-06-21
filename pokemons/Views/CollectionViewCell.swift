@@ -21,6 +21,6 @@ class CollectionViewCell: UICollectionViewCell {
     }
     
     func configure(abilities: [Ability], index: Int) {
-        self.abilityName.text = abilities[index].ability.name
+        self.abilityName.text = abilities[index].ability.name.capitalized
     }
 }

@@ -13,8 +13,11 @@ class PokemonDetailFirstCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        pokemonImageView.layer.cornerRadius = 30
+        pokemonImageView.layer.cornerRadius = 45
         pokemonImageView.clipsToBounds = true
+        pokemonImageView.layer.backgroundColor = UIColor.secondarySystemBackground.cgColor
+        pokemonImageView.layer.borderColor = UIColor.systemCyan.cgColor
+        pokemonImageView.layer.borderWidth = 2
     }
     
     func configureAvatar(pokemon detail: PokemonDetail) {

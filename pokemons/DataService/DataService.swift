@@ -13,8 +13,13 @@ class DataService {
     
     private init() {}
     
-    func getPokemons(_ completion: @escaping ([Pokemon]) -> Void) {
-        guard let url = URL(string: "https://pokeapi.co/api/v2/pokemon?limit=1000&offset=0") else {
+    func getPokemons(perPage: Int, offset: Int, _ completion: @escaping (Result<[Pokemon], APIError>) -> Void) {
+        var components = URLComponents(string: "https://pokeapi.co/api/v2/pokemon")
+        components?.queryItems = [
+            URLQueryItem(name: "per-page", value: "\(perPage)"),
+            URLQueryItem(name: "offset", value: "\(offset)")
+        ]
+        guard let url = components?.url else {
             print("Error creating URL")
             return
         }
@@ -32,7 +37,7 @@ class DataService {
             do {
                 let decodedData = try JSONDecoder().decode(Pokemons.self, from: data)
                 let pokemons = decodedData.results
-                completion(pokemons)
+                completion(.success(pokemons))
             } catch {
                 print ("Error decoding")
                 return

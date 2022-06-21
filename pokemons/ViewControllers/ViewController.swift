@@ -9,6 +9,7 @@ import UIKit
 
 class ViewController: UITableViewController {
 
+    private var offset = 0
     var pokemonArray = [Pokemon]() {
         didSet {
             DispatchQueue.main.async { [weak self] in
@@ -20,9 +21,8 @@ class ViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        DataService.shared.getPokemons { pokemons in
-            self.pokemonArray = pokemons
-        }
+        
+        fetchData()
         navigationItem.title = "Pokemons"
         
     }
@@ -40,6 +40,9 @@ class ViewController: UITableViewController {
         }
         pokemonCell.configure(pokemons: pokemonArray, index: indexPath.row)
         cell = pokemonCell
+        if tableView.contentOffset.y > (tableView.contentSize.height - tableView.frame.size.height - 50) {
+            fetchData()
+        }
         return cell
     }
     
@@ -49,6 +52,20 @@ class ViewController: UITableViewController {
         }
         vc.selectedPokemon = pokemonArray[indexPath.row]
         navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func fetchData(completed: ((Bool) -> Void)? = nil) {
+        DataService.shared.getPokemons(perPage: 20, offset: offset) { result in
+            switch result {
+            case .success(let pokemons):
+                self.pokemonArray.append(contentsOf: pokemons)
+                self.offset += 20
+                completed?(true)
+            case .failure(let error):
+                print(error.localizedDescription)
+                completed?(false)
+            }
+        }
     }
     
 }

@@ -41,7 +41,7 @@ class DetailViewController: UITableViewController {
         } else if indexPath.row < 3 {
             return 50
         } else {
-            return 110
+            return tableView.contentSize.height + 20
         }
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

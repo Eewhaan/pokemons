@@ -16,8 +16,10 @@ class PokemonCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        avatarImageView.layer.cornerRadius = 30
+        avatarImageView.layer.cornerRadius = 25
         avatarImageView.clipsToBounds = true
+        avatarImageView.layer.borderWidth = 1
+        avatarImageView.layer.borderColor = UIColor.systemCyan.cgColor
         detailLabel.layer.backgroundColor = UIColor.systemCyan.cgColor
         detailLabel.textColor = UIColor.white
         detailLabel.layer.cornerRadius = 2
