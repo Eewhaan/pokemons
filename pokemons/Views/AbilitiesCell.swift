@@ -11,8 +11,12 @@ import UIKit
 class AbilitiesCell: UITableViewCell {
 
     @IBOutlet weak var abilitiesCV: UICollectionView!
+
+    
+    
     var abilities = [Ability]() {
         didSet {
+            layoutIfNeeded()
             DispatchQueue.main.async { [weak self] in
                 self?.abilitiesCV.reloadData()
             }

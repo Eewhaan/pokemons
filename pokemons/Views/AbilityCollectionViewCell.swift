@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CollectionViewCell: UICollectionViewCell {
+class AbilityCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var abilityName: UILabel!
     

@@ -8,8 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		DB24B2E4286194D900351D0C /* AbilitiesCellExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB24B2E3286194D900351D0C /* AbilitiesCellExt.swift */; };
-		DB24B2E62861961100351D0C /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB24B2E52861961100351D0C /* CollectionViewCell.swift */; };
+		DB24B2E62861961100351D0C /* AbilityCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB24B2E52861961100351D0C /* AbilityCollectionViewCell.swift */; };
 		DB24B2E82861E7D200351D0C /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB24B2E72861E7D200351D0C /* APIError.swift */; };
+		DB24B2EA28620A2300351D0C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB24B2E928620A2300351D0C /* Constants.swift */; };
 		DB37DF5428605B18006355E2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB37DF5328605B18006355E2 /* AppDelegate.swift */; };
 		DB37DF5628605B18006355E2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB37DF5528605B18006355E2 /* SceneDelegate.swift */; };
 		DB37DF5828605B18006355E2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB37DF5728605B18006355E2 /* ViewController.swift */; };
@@ -30,8 +31,9 @@
 
 /* Begin PBXFileReference section */
 		DB24B2E3286194D900351D0C /* AbilitiesCellExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbilitiesCellExt.swift; sourceTree = "<group>"; };
-		DB24B2E52861961100351D0C /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		DB24B2E52861961100351D0C /* AbilityCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbilityCollectionViewCell.swift; sourceTree = "<group>"; };
 		DB24B2E72861E7D200351D0C /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
+		DB24B2E928620A2300351D0C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		DB37DF5028605B18006355E2 /* pokemons.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pokemons.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB37DF5328605B18006355E2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DB37DF5528605B18006355E2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -63,6 +65,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DB24B2F42862FC4A00351D0C /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				DB37DF5528605B18006355E2 /* SceneDelegate.swift */,
+				DB37DF5328605B18006355E2 /* AppDelegate.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		DB37DF4728605B17006355E2 = {
 			isa = PBXGroup;
 			children = (
@@ -82,8 +93,7 @@
 		DB37DF5228605B18006355E2 /* pokemons */ = {
 			isa = PBXGroup;
 			children = (
-				DB37DF5328605B18006355E2 /* AppDelegate.swift */,
-				DB37DF5528605B18006355E2 /* SceneDelegate.swift */,
+				DB24B2F42862FC4A00351D0C /* Common */,
 				DB37DF74286067AD006355E2 /* DataService */,
 				DB37DF7328606795006355E2 /* Extensions */,
 				DB37DF712860675C006355E2 /* ViewControllers */,
@@ -113,7 +123,7 @@
 				DBF13DB22860B5BC001A9E0C /* PokemonDetailFirstCell.swift */,
 				DBF13DB42860B60C001A9E0C /* PokemonDetailCell.swift */,
 				DBF13DB62860C0B1001A9E0C /* AbilitiesCell.swift */,
-				DB24B2E52861961100351D0C /* CollectionViewCell.swift */,
+				DB24B2E52861961100351D0C /* AbilityCollectionViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -142,6 +152,7 @@
 				DB37DF6B286063EB006355E2 /* Pokemon.swift */,
 				DBF13DA828609DB5001A9E0C /* PokemonDetail.swift */,
 				DB24B2E72861E7D200351D0C /* APIError.swift */,
+				DB24B2E928620A2300351D0C /* Constants.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -222,7 +233,7 @@
 				DB37DF6A2860621D006355E2 /* PokemonCell.swift in Sources */,
 				DBF13DB52860B60C001A9E0C /* PokemonDetailCell.swift in Sources */,
 				DB37DF6E286065EF006355E2 /* DataService.swift in Sources */,
-				DB24B2E62861961100351D0C /* CollectionViewCell.swift in Sources */,
+				DB24B2E62861961100351D0C /* AbilityCollectionViewCell.swift in Sources */,
 				DBF13DB72860C0B1001A9E0C /* AbilitiesCell.swift in Sources */,
 				DB37DF5828605B18006355E2 /* ViewController.swift in Sources */,
 				DB37DF79286083B6006355E2 /* Pokemons.swift in Sources */,
@@ -232,6 +243,7 @@
 				DB37DF6828605B9A006355E2 /* DetailViewController.swift in Sources */,
 				DB24B2E82861E7D200351D0C /* APIError.swift in Sources */,
 				DBF13DA928609DB5001A9E0C /* PokemonDetail.swift in Sources */,
+				DB24B2EA28620A2300351D0C /* Constants.swift in Sources */,
 				DB37DF6C286063EB006355E2 /* Pokemon.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

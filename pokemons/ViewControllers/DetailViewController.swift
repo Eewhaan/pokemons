@@ -13,13 +13,20 @@ class DetailViewController: UITableViewController {
     var selectedPokemon: Pokemon?
     var pokemonDetails: PokemonDetail? {
         didSet {
+            self.calculateAbilityRowHeight()
             DispatchQueue.main.async { [weak self] in
                 self?.tableView.reloadData()
                 
             }
         }
     }
-        
+    var abilityRowHeight: CGFloat = 0 {
+        willSet {
+            DispatchQueue.main.async { [weak self] in
+                self?.tableView.layoutIfNeeded()
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,39 +40,50 @@ class DetailViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return DetailViewControllerConstants.numberOfRows
     }
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.row == 0 {
-            return 170
-        } else if indexPath.row < 3 {
-            return 50
-        } else {
-            return tableView.contentSize.height + 20
+        switch indexPath.row {
+        case 0:
+            return DetailViewControllerConstants.imageRowHeight
+        case 1..<3:
+            return DetailViewControllerConstants.infoRowHeight
+        case 3:
+            return abilityRowHeight
+        default:
+            return 0
         }
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell = UITableViewCell()
-        if indexPath.row == 0 {
-            guard let firstCell = tableView.dequeueReusableCell(withIdentifier: "FirstCell", for: indexPath) as? PokemonDetailFirstCell,
-                  let pokemonDetails = pokemonDetails
-            else { return cell }
-            firstCell.configureAvatar(pokemon: pokemonDetails)
-            cell = firstCell
-        } else if indexPath.row < 3 {
-            guard let detailCell = tableView.dequeueReusableCell(withIdentifier: "DetailCell", for: indexPath) as? PokemonDetailCell,
-                let pokemonDetails = pokemonDetails
-            else { return cell }
-            detailCell.configure(pokemon: pokemonDetails, index: indexPath.row)
-            cell = detailCell
-        } else {
-            guard let abilityCell = tableView.dequeueReusableCell(withIdentifier: "AbilitiesCell", for: indexPath) as? AbilitiesCell else { return cell }
-            if let abilities = pokemonDetails?.abilities {
-                abilityCell.abilities = abilities
-            }
-            cell = abilityCell
+        guard let pokemonDetails = pokemonDetails else { return cell }
+        
+        switch indexPath.row {
+        case 0:
+            guard let imageCell = tableView.dequeueReusableCell(withIdentifier: DetailViewControllerConstants.imageCellId, for: indexPath) as? PokemonDetailFirstCell else { return cell }
+            imageCell.configureAvatar(pokemon: pokemonDetails)
+            cell = imageCell
+            
+        case 1..<3:
+            guard let infoCell = tableView.dequeueReusableCell(withIdentifier: DetailViewControllerConstants.infoCellId, for: indexPath) as? PokemonDetailCell else { return cell }
+            infoCell.configure(pokemon: pokemonDetails, index: indexPath.row)
+            cell = infoCell
+            
+        case 3:
+            guard let abilitiesCell = tableView.dequeueReusableCell(withIdentifier: DetailViewControllerConstants.abilityCellId, for: indexPath) as? AbilitiesCell else { return cell }
+            abilitiesCell.abilities = pokemonDetails.abilities
+            cell = abilitiesCell
+            
+        default:
+            break
         }
         return cell
+    }
+    
+    func calculateAbilityRowHeight() {
+        guard let abilityCount = pokemonDetails?.abilities.count else { return }
+        let multiplier = (abilityCount + abilityCount % 2)/2
+        abilityRowHeight = CGFloat(multiplier * DetailViewControllerConstants.abilityCVRowHeight)
     }
 
 }
