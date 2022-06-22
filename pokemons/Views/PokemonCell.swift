@@ -16,13 +16,14 @@ class PokemonCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        avatarImageView.layer.cornerRadius = 25
+        avatarImageView.layer.cornerRadius = ConstantsPokemonCell.imageCornerRadius
         avatarImageView.clipsToBounds = true
-        avatarImageView.layer.borderWidth = 1
-        avatarImageView.layer.borderColor = UIColor.systemCyan.cgColor
-        detailLabel.layer.backgroundColor = UIColor.systemCyan.cgColor
-        detailLabel.textColor = UIColor.white
-        detailLabel.layer.cornerRadius = 2
+        avatarImageView.layer.borderWidth = ConstantsPokemonCell.imageBorderWidth
+        avatarImageView.layer.borderColor = ConstantsPokemonCell.imageBorderColor
+        detailLabel.layer.backgroundColor = ConstantsPokemonCell.labelBackgroundColor
+        detailLabel.textColor = ConstantsPokemonCell.labelTextColor
+        detailLabel.layer.cornerRadius = ConstantsPokemonCell.labelCornerRadius
+        
     }
     
     func configure(pokemons: [Pokemon], index: Int) {

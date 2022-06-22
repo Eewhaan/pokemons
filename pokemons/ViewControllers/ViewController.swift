@@ -23,31 +23,30 @@ class ViewController: UITableViewController {
         super.viewDidLoad()
         
         fetchData()
-        navigationItem.title = "Pokemons"
-        
+        navigationItem.title = ViewControllerConstants.title
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return pokemonArray.count
     }
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 70
+        return ViewControllerConstants.tableRowHeight
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell = UITableViewCell()
-        guard let pokemonCell = tableView.dequeueReusableCell(withIdentifier: "PokemonCell", for: indexPath) as? PokemonCell else {
+        guard let pokemonCell = tableView.dequeueReusableCell(withIdentifier: ViewControllerConstants.cellId, for: indexPath) as? PokemonCell else {
             return cell
         }
         pokemonCell.configure(pokemons: pokemonArray, index: indexPath.row)
         cell = pokemonCell
-        if tableView.contentOffset.y > (tableView.contentSize.height - tableView.frame.size.height - 50) {
+        if tableView.contentOffset.y > (tableView.contentSize.height - tableView.frame.size.height) {
             fetchData()
         }
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let vc = storyboard?.instantiateViewController(withIdentifier: "Detail") as? DetailViewController else {
+        guard let vc = storyboard?.instantiateViewController(withIdentifier: ViewControllerConstants.detailVCId) as? DetailViewController else {
             return
         }
         vc.selectedPokemon = pokemonArray[indexPath.row]
